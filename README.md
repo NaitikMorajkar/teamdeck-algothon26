@@ -48,7 +48,7 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-The committed `Dockerfile` and `/_health` route provide the container deployment contract used by the managed publish workflow. The app listens on port 3000 and the health endpoint is intentionally unauthenticated.
+The committed `Dockerfile` and `/health` route provide the container deployment contract used by the managed publish workflow. The app listens on port 3000 and the health endpoint is intentionally unauthenticated.
 
 Apply `supabase/migrations/0001_teamdeck.sql` in the Supabase SQL editor or with the Supabase CLI. Create 2–3 email/password demo accounts, then seed a project with the shape documented in `supabase/seed.sql`.
 
