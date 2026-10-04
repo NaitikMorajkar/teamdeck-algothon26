@@ -94,3 +94,4 @@ The Preview build includes a deterministic local workspace dataset so judges can
 ## Demo
 
 See [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md) for the 3-minute walkthrough and [`TESTING.md`](./TESTING.md) for evidence and edge cases.
+DEploy link-https://teamdeck-afzth6uf.manus.space
