@@ -30,6 +30,7 @@ export default function Home() {
   const [copilotInput, setCopilotInput] = useState('');
   const [copilotMessages, setCopilotMessages] = useState([{ role: 'assistant', text: 'I’m grounded in Project Orbit. Ask what is late, what changed, or who is overloaded.' }]);
   const [conflictOpen, setConflictOpen] = useState(false);
+  const [cursorDown, setCursorDown] = useState(false);
   const risks = useMemo(() => computeRisk(tasks, dependencies, today), [tasks]);
   const riskIds = new Set(risks.map((r) => r.taskId));
   const overdueIds = new Set(tasks.filter((t) => t.status !== 'done' && t.dueDate < today).map((t) => t.id));
@@ -48,7 +49,8 @@ export default function Home() {
   const askCopilot = (question = copilotInput) => { if (!question.trim()) return; const q = question.trim(); setCopilotMessages((m) => [...m, { role: 'user', text: q }]); setCopilotInput(''); let answer = 'I couldn’t find that in this project.'; if (/late|overdue/i.test(q)) answer = 'Two tasks need attention: Update logo lockup is overdue, and Finalize onboarding flow is due within two days. Update logo lockup is also blocking the review narrative.'; else if (/overloaded|workload/i.test(q)) answer = 'Priya has 2 active tasks, Rahul has 1 active task, Sana has 2 active tasks, and Arjun has 1. Sana has the highest near-term load.'; else if (/changed|yesterday/i.test(q)) answer = 'Since yesterday: Sana moved Write demo narrative to Review, Arjun completed Realtime conflict test, and Priya shifted the dashboard deadline to Oct 7.'; else if (/friday|finish/i.test(q)) answer = `At ${progress}% complete, the project can finish by Friday if Update logo lockup is cleared today. The current risk chain runs through the onboarding flow.`; else if (/summarize|logo/i.test(q)) answer = 'Update logo lockup is a priority-2 task owned by Rahul. It is overdue, has 2 comments, and blocks Finalize onboarding flow through the dependency chain.'; window.setTimeout(() => setCopilotMessages((m) => [...m, { role: 'assistant', text: answer }]), 420); };
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => { const shell = event.currentTarget; shell.style.setProperty('--mouse-x', `${event.clientX}px`); shell.style.setProperty('--mouse-y', `${event.clientY}px`); };
 
-  return <div className="app-shell" onMouseMove={handleMouseMove}>
+  return <div className={`app-shell ${cursorDown ? 'cursor-down' : ''}`} onMouseMove={handleMouseMove} onMouseDown={() => setCursorDown(true)} onMouseUp={() => setCursorDown(false)} onMouseLeave={() => setCursorDown(false)}>
+    <div className="custom-cursor" aria-hidden="true"><span className="cursor-halo" /><span className="cursor-core" /></div>
     <aside className="rail"><Logo /><div className="rail-label eyebrow">Workspace</div><nav className="nav">
       <button className={`nav-btn ${view === 'today' ? 'active' : ''}`} onClick={() => setView('today')}><Inbox size={16} /><span>Today <small style={{ color: '#C8F169', marginLeft: 5 }}>5</small></span></button>
       <button className={`nav-btn ${view === 'board' ? 'active' : ''}`} onClick={() => setView('board')}><FolderKanban size={16} /><span>Project board</span></button>
