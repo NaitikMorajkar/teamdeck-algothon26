@@ -13,4 +13,7 @@ test('workspace exposes board, Today and Copilot surfaces', async ({ page }) => 
   await expect(page.locator('.app-shell')).toHaveClass(/dark-mode/);
   await page.getByRole('button', { name: 'Switch to light mode' }).click();
   await expect(page.locator('.app-shell')).not.toHaveClass(/dark-mode/);
+  await page.mouse.move(640, 420);
+  await expect(page.locator('.custom-cursor')).toHaveCSS('display', 'block');
+  await expect.poll(async () => page.locator('.custom-cursor').evaluate((el) => el.style.transform)).toContain('640px');
 });
