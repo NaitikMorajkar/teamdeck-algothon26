@@ -1,0 +1,3 @@
+-- Demo seed reference. Create users through Supabase Auth, then replace the UUID placeholders below.
+-- The application ships with a local demo workspace for preview and this script documents the production seed shape.
+-- Recommended demo accounts: priya@teamdeck.demo, rahul@teamdeck.demo, sana@teamdeck.demo.

@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Today"},{"path":"/projects","title":"Projects"},{"path":"/projects/:projectId","title":"Project board"},{"path":"/projects/:projectId/dashboard","title":"Project dashboard"},{"path":"/projects/:projectId/members","title":"Project members"},{"path":"/today","title":"Today"},{"path":"/login","title":"Login"},{"path":"/signup","title":"Sign up"}]}
