@@ -117,7 +117,20 @@ button { cursor: pointer; }
 .primary-btn:hover, .floating-copilot:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(16,19,27,.16); }
 .filter:hover, .icon-btn:hover { transform: translateY(-1px); }
 @media (pointer: fine) { .app-shell, .app-shell * { cursor: none !important; } }
-@media (pointer: coarse) { .custom-cursor { display: none; } }
+@media (pointer: coarse) {
+  .custom-cursor, .app-shell::before { display: none; }
+  .app-shell { overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+  .app-shell button { min-height: 40px; touch-action: manipulation; }
+  .task-card { animation-duration: .3s; transition: transform .12s ease, box-shadow .12s ease; }
+  .task-card:active { transform: scale(.985); box-shadow: 0 4px 12px rgba(16,19,27,.08); }
+  .nav-btn:active, .filter:active, .icon-btn:active, .primary-btn:active, .floating-copilot:active { transform: scale(.96); }
+  .primary-btn, .floating-copilot { min-height: 44px; }
+}
+@media (pointer: coarse) and (max-width: 800px) {
+  .content { overscroll-behavior-x: contain; }
+  .board { scroll-snap-type: x proximity; }
+  .column { scroll-snap-align: start; }
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } .app-shell::before, .custom-cursor { display: none; } }
 .conflict { background: #fff8f5; border: 1px solid #ffd8ca; border-radius: 11px; padding: 12px; margin: 12px 0; }.conflict-values { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 9px; }.conflict-choice { background: white; border: 1px solid #e8d1c9; border-radius: 8px; padding: 9px; font-size: 10px; color: #6e7582; }.conflict-choice:hover { border-color: var(--coral); }
 .copilot { position: fixed; right: 22px; bottom: 22px; width: min(370px, calc(100vw - 44px)); z-index: 14; }.copilot-panel { background: var(--ink); color: white; border-radius: 17px; box-shadow: 0 24px 60px rgba(16,19,27,.25); overflow: hidden; }.copilot-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.09); }.copilot-body { padding: 13px; }.copilot-message { background: rgba(255,255,255,.08); border-radius: 11px; padding: 11px; color: #d5dae4; font-size: 11px; line-height: 1.5; margin-bottom: 10px; }.copilot-message.user { background: var(--lime); color: var(--ink); margin-left: 24px; }.starter-row { display: flex; gap: 5px; overflow: auto; padding-bottom: 8px; }.starter { flex: 0 0 auto; border: 1px solid rgba(255,255,255,.12); color: #b9c1cf; background: transparent; border-radius: 99px; padding: 6px 8px; font-size: 9px; }.copilot-input { display: flex; gap: 7px; margin-top: 8px; }.copilot-input input { min-width: 0; flex: 1; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.07); color: white; border-radius: 9px; padding: 9px; font-size: 11px; outline: none; }.copilot-input button { border: 0; background: var(--lime); color: var(--ink); border-radius: 9px; width: 34px; }.floating-copilot { width: 45px; height: 45px; border-radius: 15px; border: 0; background: var(--ink); color: var(--lime); display: grid; place-items: center; margin-left: auto; box-shadow: 0 10px 22px rgba(16,19,27,.2); }
