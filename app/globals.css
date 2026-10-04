@@ -16,9 +16,12 @@ button { cursor: pointer; }
 .cursor-core { position: absolute; width: 8px; height: 8px; left: -4px; top: -4px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(16,19,27,.35), 0 0 18px rgba(200,241,105,.9); transition: transform .12s ease, background .12s ease; }
 .cursor-arrow { position: absolute; left: -2px; top: -2px; width: 0; height: 0; border-top: 15px solid var(--ink); border-right: 10px solid transparent; transform: rotate(-8deg); filter: drop-shadow(0 0 2px var(--lime)); transition: transform .12s ease, border-top-color .12s ease; }
 .cursor-halo { position: absolute; width: 34px; height: 34px; left: -17px; top: -17px; border: 1px solid rgba(200,241,105,.9); border-radius: 50%; box-shadow: 0 0 0 5px rgba(200,241,105,.08), inset 0 0 12px rgba(200,241,105,.12); transition: transform .2s cubic-bezier(.2,.8,.2,1), width .2s ease, height .2s ease, left .2s ease, top .2s ease, border-color .2s ease; }
+.app-shell[data-cursor-hover="true"] .cursor-halo { width: 50px; height: 38px; left: -25px; top: -19px; border-radius: 14px; border-color: var(--lilac); background: rgba(155,167,255,.08); box-shadow: 0 0 0 5px rgba(155,167,255,.08), inset 0 0 15px rgba(155,167,255,.16); transform: rotate(-8deg); }
+.app-shell[data-cursor-hover="true"] .cursor-arrow { transform: rotate(-8deg) scale(.72); }
+.app-shell[data-cursor-hover="true"] .cursor-core { transform: scale(1.35); background: var(--lilac); }
 .cursor-down .cursor-core { transform: scale(.65); background: white; }
 .cursor-down .cursor-arrow { transform: rotate(-8deg) scale(.8); }
-.cursor-down .cursor-halo { width: 48px; height: 48px; left: -24px; top: -24px; border-color: var(--coral); transform: rotate(24deg); }
+.cursor-down .cursor-halo { width: 48px; height: 48px; left: -24px; top: -24px; border-color: var(--coral); transform: rotate(24deg) scale(.9); }
 .dark-mode { --paper: #0f131b; --paper-2: #171d28; --surface: #1a202c; --surface-2: #202734; --ink: #f4f6f0; --ink-2: #0b0e14; --muted: #9ca6b8; --text-muted: #aab3c2; --border: rgba(255,255,255,.12); color: var(--ink); }
 .dark-mode .canvas { background: var(--paper); }
 .dark-mode .signal-cell, .dark-mode .task-card, .dark-mode .metric, .dark-mode .panel, .dark-mode .action-item { background: var(--surface); color: var(--ink); border-color: var(--border); }
