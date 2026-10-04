@@ -51,7 +51,7 @@ export default function Home() {
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => { const shell = event.currentTarget; shell.style.setProperty('--mouse-x', `${event.clientX}px`); shell.style.setProperty('--mouse-y', `${event.clientY}px`); shell.style.setProperty('--cursor-x', `${event.clientX}px`); shell.style.setProperty('--cursor-y', `${event.clientY}px`); };
 
   return <div className={`app-shell ${cursorDown ? 'cursor-down' : ''} ${darkMode ? 'dark-mode' : ''}`} onMouseMove={handleMouseMove} onMouseDown={() => setCursorDown(true)} onMouseUp={() => setCursorDown(false)} onMouseLeave={() => setCursorDown(false)}>
-    <div className="custom-cursor" aria-hidden="true"><span className="cursor-halo" /><span className="cursor-core" /></div>
+    <div className="custom-cursor" aria-hidden="true"><span className="cursor-halo" /><span className="cursor-arrow" /><span className="cursor-core" /></div>
     <aside className="rail"><Logo /><div className="rail-label eyebrow">Workspace</div><nav className="nav">
       <button className={`nav-btn ${view === 'today' ? 'active' : ''}`} onClick={() => setView('today')}><Inbox size={16} /><span>Today <small style={{ color: '#C8F169', marginLeft: 5 }}>5</small></span></button>
       <button className={`nav-btn ${view === 'board' ? 'active' : ''}`} onClick={() => setView('board')}><FolderKanban size={16} /><span>Project board</span></button>

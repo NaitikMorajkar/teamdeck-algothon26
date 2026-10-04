@@ -14,8 +14,10 @@ button { cursor: pointer; }
 .app-shell::before { content: ''; position: fixed; width: 520px; height: 520px; left: var(--mouse-x); top: var(--mouse-y); transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(200,241,105,.13) 0, rgba(155,167,255,.055) 24%, transparent 68%); pointer-events: none; z-index: -1; transition: left .14s ease-out, top .14s ease-out; }
 .custom-cursor { position: fixed; left: var(--cursor-x); top: var(--cursor-y); width: 1px; height: 1px; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
 .cursor-core { position: absolute; width: 8px; height: 8px; left: -4px; top: -4px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(16,19,27,.35), 0 0 18px rgba(200,241,105,.9); transition: transform .12s ease, background .12s ease; }
+.cursor-arrow { position: absolute; left: -2px; top: -2px; width: 0; height: 0; border-top: 15px solid var(--ink); border-right: 10px solid transparent; transform: rotate(-8deg); filter: drop-shadow(0 0 2px var(--lime)); transition: transform .12s ease, border-top-color .12s ease; }
 .cursor-halo { position: absolute; width: 34px; height: 34px; left: -17px; top: -17px; border: 1px solid rgba(200,241,105,.9); border-radius: 50%; box-shadow: 0 0 0 5px rgba(200,241,105,.08), inset 0 0 12px rgba(200,241,105,.12); transition: transform .2s cubic-bezier(.2,.8,.2,1), width .2s ease, height .2s ease, left .2s ease, top .2s ease, border-color .2s ease; }
 .cursor-down .cursor-core { transform: scale(.65); background: white; }
+.cursor-down .cursor-arrow { transform: rotate(-8deg) scale(.8); }
 .cursor-down .cursor-halo { width: 48px; height: 48px; left: -24px; top: -24px; border-color: var(--coral); transform: rotate(24deg); }
 .dark-mode { --paper: #0f131b; --paper-2: #171d28; --surface: #1a202c; --surface-2: #202734; --ink: #f4f6f0; --ink-2: #0b0e14; --muted: #9ca6b8; --text-muted: #aab3c2; --border: rgba(255,255,255,.12); color: var(--ink); }
 .dark-mode .canvas { background: var(--paper); }
@@ -25,6 +27,7 @@ button { cursor: pointer; }
 .dark-mode .filter, .dark-mode .icon-btn { background: var(--surface); color: var(--ink); border-color: var(--border); }
 .dark-mode .section-title, .dark-mode .task-title, .dark-mode .column-title, .dark-mode .signal-big { color: var(--ink); }
 .dark-mode .cursor-core { background: var(--coral); box-shadow: 0 0 0 2px rgba(255,255,255,.35), 0 0 18px rgba(255,131,100,.95); }
+.dark-mode .cursor-arrow { border-top-color: white; filter: drop-shadow(0 0 2px var(--coral)); }
 .dark-mode .cursor-halo { border-color: var(--lilac); box-shadow: 0 0 0 5px rgba(155,167,255,.1), inset 0 0 12px rgba(155,167,255,.16); }
 .rail { width: 236px; flex: 0 0 236px; background: var(--ink); color: white; display: flex; flex-direction: column; padding: 24px 16px 18px; position: relative; z-index: 1; animation: railReveal .55s cubic-bezier(.2,.8,.2,1) both; }
 .canvas { min-width: 0; flex: 1; background: rgba(246,247,242,.92); position: relative; z-index: 1; animation: canvasReveal .65s cubic-bezier(.2,.8,.2,1) both; }
@@ -125,7 +128,7 @@ button { cursor: pointer; }
 .primary-btn, .filter, .icon-btn, .floating-copilot, .starter { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
 .primary-btn:hover, .floating-copilot:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(16,19,27,.16); }
 .filter:hover, .icon-btn:hover { transform: translateY(-1px); }
-@media (pointer: fine) { .app-shell, .app-shell * { cursor: default; } .custom-cursor { display: block; } }
+@media (pointer: fine) { .app-shell, .app-shell * { cursor: none !important; } .custom-cursor { display: block; } }
 @media (pointer: coarse) {
   .custom-cursor, .app-shell::before { display: none; }
   .app-shell { overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
