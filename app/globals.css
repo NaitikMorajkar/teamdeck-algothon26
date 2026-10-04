@@ -13,11 +13,12 @@ button { cursor: pointer; }
 .app-shell { min-height: 100vh; display: flex; background: var(--paper); position: relative; isolation: isolate; overflow: hidden; --mouse-x: 50vw; --mouse-y: 20vh; --cursor-x: -100px; --cursor-y: -100px; }
 .app-shell::before { content: ''; position: fixed; width: 520px; height: 520px; left: var(--mouse-x); top: var(--mouse-y); transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(200,241,105,.13) 0, rgba(155,167,255,.055) 24%, transparent 68%); pointer-events: none; z-index: -1; transition: left .14s ease-out, top .14s ease-out; }
 .custom-cursor { position: fixed; left: var(--cursor-x); top: var(--cursor-y); width: 1px; height: 1px; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
-.cursor-core { position: absolute; width: 8px; height: 8px; left: -4px; top: -4px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(16,19,27,.35), 0 0 18px rgba(200,241,105,.9); transition: transform .12s ease, background .12s ease; }
-.cursor-arrow { position: absolute; left: -2px; top: -2px; width: 0; height: 0; border-top: 15px solid var(--ink); border-right: 10px solid transparent; transform: rotate(-8deg); filter: drop-shadow(0 0 2px var(--lime)); transition: transform .12s ease, border-top-color .12s ease; }
+.cursor-core { position: absolute; width: 8px; height: 8px; left: -4px; top: -4px; z-index: 2; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(16,19,27,.35), 0 0 18px rgba(200,241,105,.9); transition: transform .12s ease, background .12s ease; }
+.cursor-arrow { position: absolute; left: -3px; top: -3px; z-index: 1; width: 22px; height: 28px; border: 1px solid rgba(255,255,255,.9); border-radius: 3px; background: linear-gradient(145deg, #ff4d8d 0%, #ff9f43 28%, #c8f169 52%, #49d7c4 73%, #9ba7ff 100%); clip-path: polygon(0 0, 0 100%, 29% 73%, 53% 100%, 67% 91%, 43% 65%, 100% 65%); transform: rotate(-8deg); filter: drop-shadow(0 2px 3px rgba(16,19,27,.45)); animation: cursorRainbow 3s linear infinite; transition: transform .12s ease, filter .12s ease; }
+@keyframes cursorRainbow { 0%, 100% { filter: drop-shadow(0 2px 3px rgba(16,19,27,.45)) hue-rotate(0deg); } 50% { filter: drop-shadow(0 2px 7px rgba(200,241,105,.8)) hue-rotate(18deg); } }
 .cursor-halo { position: absolute; width: 34px; height: 34px; left: -17px; top: -17px; border: 1px solid rgba(200,241,105,.9); border-radius: 50%; box-shadow: 0 0 0 5px rgba(200,241,105,.08), inset 0 0 12px rgba(200,241,105,.12); transition: transform .2s cubic-bezier(.2,.8,.2,1), width .2s ease, height .2s ease, left .2s ease, top .2s ease, border-color .2s ease; }
 .app-shell[data-cursor-hover="true"] .cursor-halo { width: 50px; height: 38px; left: -25px; top: -19px; border-radius: 14px; border-color: var(--lilac); background: rgba(155,167,255,.08); box-shadow: 0 0 0 5px rgba(155,167,255,.08), inset 0 0 15px rgba(155,167,255,.16); transform: rotate(-8deg); }
-.app-shell[data-cursor-hover="true"] .cursor-arrow { transform: rotate(-8deg) scale(.72); }
+.app-shell[data-cursor-hover="true"] .cursor-arrow { transform: rotate(-8deg) scale(.82); filter: drop-shadow(0 2px 9px rgba(155,167,255,.95)); }
 .app-shell[data-cursor-hover="true"] .cursor-core { transform: scale(1.35); background: var(--lilac); }
 .cursor-down .cursor-core { transform: scale(.65); background: white; }
 .cursor-down .cursor-arrow { transform: rotate(-8deg) scale(.8); }
@@ -30,7 +31,7 @@ button { cursor: pointer; }
 .dark-mode .filter, .dark-mode .icon-btn { background: var(--surface); color: var(--ink); border-color: var(--border); }
 .dark-mode .section-title, .dark-mode .task-title, .dark-mode .column-title, .dark-mode .signal-big { color: var(--ink); }
 .dark-mode .cursor-core { background: var(--coral); box-shadow: 0 0 0 2px rgba(255,255,255,.35), 0 0 18px rgba(255,131,100,.95); }
-.dark-mode .cursor-arrow { border-top-color: white; filter: drop-shadow(0 0 2px var(--coral)); }
+.dark-mode .cursor-arrow { border-color: rgba(16,19,27,.9); filter: drop-shadow(0 2px 5px rgba(255,131,100,.9)); }
 .dark-mode .cursor-halo { border-color: var(--lilac); box-shadow: 0 0 0 5px rgba(155,167,255,.1), inset 0 0 12px rgba(155,167,255,.16); }
 .rail { width: 236px; flex: 0 0 236px; background: var(--ink); color: white; display: flex; flex-direction: column; padding: 24px 16px 18px; position: relative; z-index: 1; animation: railReveal .55s cubic-bezier(.2,.8,.2,1) both; }
 .canvas { min-width: 0; flex: 1; background: rgba(246,247,242,.92); position: relative; z-index: 1; animation: canvasReveal .65s cubic-bezier(.2,.8,.2,1) both; }
